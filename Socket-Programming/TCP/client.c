@@ -50,14 +50,13 @@ int main()
 	return 0;
 }
 
-//output
-//------
-s6@administrator-desktop:~/alwin$ ./client
+// baymax@walle:~/code/network_labS6/Socket-Programming/TCP$ gcc client.c -o client
+// baymax@walle:~/code/network_labS6/Socket-Programming/TCP$ ./client 
 
-Client socket created
+// Client socket created
 
-Server connection success
-Enter the data to send : hello people
+// Server connection success
+// Enter the data to send : hi there!
 
-Sending data...
-s6@administrator-desktop:~/alwin$
+// Sending data...
+// baymax@walle:~/code/network_labS6/Socket-Programming/TCP$ 

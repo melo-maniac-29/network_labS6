@@ -71,17 +71,18 @@ int main()
 	return 0;
 }
 
-//output
-//------
-s6@administrator-desktop:~/alwin$ ./server
 
-Created socket
-Bind success
+// baymax@walle:~/code/network_labS6/Socket-Programming/TCP$ gcc server.c -o server
+// baymax@walle:~/code/network_labS6/Socket-Programming/TCP$ ./server 
 
-Listening...
+// Created socket
+// Bind success
 
-Started accepting connections
+// L       istening...
 
-Started receving for data
-Message from client : hello people
-s6@administrator-desktop:~/alwin$
+// Started accepting connections
+
+// Started receving for data
+// Message from client : hi there!
+// baymax@walle:~/code/network_labS6/Socket-Programming/TCP$ 
+
