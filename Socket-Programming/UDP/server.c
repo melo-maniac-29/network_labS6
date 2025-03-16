@@ -78,15 +78,21 @@ int main(int argc, char *argv[])
 }
 
 //output
-//------
-s6@administrator-desktop:~/alwin$ ./udp_server 3000 
-                                                     
-PORT : 3000                                         
-                                                    
-Created socket                                       
-Bind success                                        
-                                                    
-Started receving for data                           
-Message from client : hello                        
-                                                  
-RECV CONF SENT 
+// baymax@walle:~/code/network_labS6/Socket-Programming/UDP$ ./server 3000
+
+// PORT : 3000
+
+// Created socket
+// Bind success
+
+// Started receving for data
+// Message from client : hi there
+
+// RECV CONF SENT
+
+// Started receving for data
+// Message from client : haha worked
+
+// RECV CONF SENT
+
+

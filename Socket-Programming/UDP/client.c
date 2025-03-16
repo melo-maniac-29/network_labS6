@@ -71,13 +71,18 @@ int main(int argc, char* argv[])
 
 //output
 //------
+// baymax@walle:~/code/network_labS6/Socket-Programming/UDP$ ./client 3000
 
-s6@administrator-desktop:~/alwin$ ./udp_client 3000
+// Client socket created
+// Enter the data to send : hi there
 
-Client socket created
-Enter the data to send : hello
+// Sending data...
 
-Sending data...
+// MSG FROM SERVER : MSG RECEIVED�
+// Enter the data to send : haha worked
 
-MSG FROM SERVER : MSG RECEIVED,
-Enter the data to send :                                    
+// Sending data...
+
+// MSG FROM SERVER : MSG RECEIVED
+// Enter the data to send : 
+                               
