@@ -1,55 +1,92 @@
-#include<stdio.h>
-#include<unistd.h>
-#include<sys/types.h>
-#include<netinet/in.h>
-#include<netdb.h>
-#include<strings.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
 
-int main()
+#define BUFF_SIZE 1024
+
+int main(int argc, char *argv[])
 {
-    int serversocket,port; //serversocket is the socket descriptor , port is the port number
-    struct sockaddr_in serveraddr,clientaddr; //creating a structure of type sockaddr_in for server and client
-    socklen_t len; //creating a variable to store the length of the server address
-    char message[50];//creating a char array to store the message
-    //socket creation.
-    serversocket=socket(AF_INET,SOCK_DGRAM,0);//creating a socket
-    //steps involved in defining the serveraddress.
-    bzero((char*)&serveraddr,sizeof(serveraddr)); //initializing the server address to zero
-    serveraddr.sin_family=AF_INET;//setting the family of the server address to AF_INET
 
-    printf("Enter the port number ");
-    scanf("%d",&port);
-    serveraddr.sin_port=htons(port);//setting the port number of the server address to port , htons is used to convert the port number to network byte order
-    serveraddr.sin_addr.s_addr=INADDR_ANY; //setting the address of the server address to INADDR_ANY , INADDR_ANY is used to bind the socket to all the interfaces of the machine
-    //binding the socket to the operating system.
-    bind(serversocket,(struct sockaddr*)&serveraddr,sizeof(serveraddr));//bind is used to bind the socket to the operating system
-    printf("\nWaiting for the client connection\n");
-    bzero((char*)&clientaddr,sizeof(clientaddr));//initializing the client address to zero
-    len=sizeof(clientaddr);//storing the length of the client address in len
+	if(argc != 2)
+	{
+		printf("\n___Usage___\n\n<executable> PORT\n");
+		return -1;
+	}
+	
+	printf("\nPORT : %s\n", argv[1]);
+	
+	char buff[BUFF_SIZE];
+	socklen_t len;
+	int k, sock_desc, temp_sock_desc;
+	struct sockaddr_in server, client;
+	const char *recv_success = "MSG RECEIVED";
+	
+	//socket creation.
+	sock_desc = socket(AF_INET, SOCK_DGRAM, 0);
+	if(sock_desc == -1)
+	{
+		printf("Error in socket creation");
+		return -1;
+	}
+	printf("\nCreated socket");
+	
+	server.sin_family = AF_INET;
+	server.sin_family = INADDR_ANY;
+	server.sin_port = htons(atoi(argv[1]));
+	
+	//bind socket with ip and port.
+	k = bind(sock_desc, (struct sockaddr *) &server, sizeof(server));
+	if(k == -1)
+	{
+	 	printf("\nError in binding\n");
+	 	return -1;
+	}
+	printf("\nBind success\n");
+	
+	len = sizeof(client);
 
-    //receiving message from the client.
-    recvfrom(serversocket,message,sizeof(message),0,(struct sockaddr*)&clientaddr,&len);//recvfrom is used to receive the message from the client
-    printf("\nConnection received from client.\n");
-    printf("\nThe client has send:\t%s\n",message);
-    printf("\nSending message to the client.\n");
-    //sending message to the client.
-    sendto(serversocket,"YOUR MESSAGE RECEIVED.",sizeof("YOUR MESSAGERECEIVED."),0,( struct sockaddr*)&clientaddr,sizeof(clientaddr));//sendto is used to send the message to the client
-    close(serversocket);
+	  while(1)
+	  {
+	  	//receive data from client.
+	  	k = recvfrom(sock_desc, buff, BUFF_SIZE, 0, (struct sockaddr *) &client, &len);
+	  	if(k == -1)
+	  	{
+			printf("\nError in receiving data\n");
+			return -1;
+	  	}
+	  	printf("\nStarted receving for data\n");
+	
+	  	printf("Message from client : %s", buff);
+	  	
+	  	k = sendto(sock_desc, recv_success, strlen(recv_success), 0, (struct sockaddr*) &client, sizeof(client));
+	  	
+	  	if( k < 0)
+	  	{
+	  		printf("\nRECV CONF NOT SENT\n");
+	  		return -1;
+	  	}
+	  	
+	  	printf("\nRECV CONF SENT\n");
+	  	
+  	}
+                          
+ close(temp_sock_desc);
+	return 0;
 }
 
-
-
-/*
-s6d2@user-HP-280-G3-MT:~/Networking-Lab-S6/Socket-Programming/UDP$ gcc server.c -o server
-s6d2@user-HP-280-G3-MT:~/Networking-Lab-S6/Socket-Programming/UDP$ ./server
-Enter the port number 6000
-
-Waiting for the client connection
-
-Connection received from client.
-
-The client has send:    HI I AM CLIENT...
-
-Sending message to the client.
-s6d2@user-HP-280-G3-MT:~/Networking-Lab-S6/Socket-Programming/UDP$ 
-*/
+//output
+//------
+s6@administrator-desktop:~/alwin$ ./udp_server 3000 
+                                                     
+PORT : 3000                                         
+                                                    
+Created socket                                       
+Bind success                                        
+                                                    
+Started receving for data                           
+Message from client : hello                        
+                                                  
+RECV CONF SENT 
