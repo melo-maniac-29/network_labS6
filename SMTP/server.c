@@ -91,35 +91,35 @@ int main() {
     return 0;
 }
 
-OUTPUT
-------
+// OUTPUT
+// ------
 
-s6@ubuntu:/alwin:$ ./server 
+// s6@ubuntu:/allen:$ ./server 
 
-Socket Created!
+// Socket Created!
 
-Socket Bind Success
+// Socket Bind Success
 
-Listening for connections...
+// Listening for connections...
 
-Accepted Connection
+// Accepted Connection
 
-Msg from client: HI�
+// Msg from client: HI�
 
-Msg from client: HELLO
+// Msg from client: HELLO
 
-Msg from client: MAILFROM abc@gmail.com
+// Msg from client: MAILFROM abc@gmail.com
 
-Msg from client: MAILTO bcd@gmail.comom
+// Msg from client: MAILTO bcd@gmail.comom
 
-Msg from client: DATAOK
+// Msg from client: DATAOK
 
-Email Body:
+// Email Body:
 
----------------------------------
-Hi
-Hello
+// ---------------------------------
+// Hi
+// Hello
 
 
----------------------------------
-__Quitting__
+// ---------------------------------
+// __Quitting__
