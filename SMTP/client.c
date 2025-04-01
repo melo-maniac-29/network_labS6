@@ -109,30 +109,30 @@ int main() {
     return 0;
 }
 
-OUTPUT
-------
-s6@ubuntu:/alwin:$ ./client 
+// OUTPUT
+// ------
+// s6@ubuntu:/allen:$ ./client 
 
-Socket Created
+// Socket Created
 
-Connection Success
+// Connection Success
 
-Msg from server: 220
+// Msg from server: 220
 
-Msg from server: 250 OK
-Enter MAILFROM address: abc@gmail.com
+// Msg from server: 250 OK
+// Enter MAILFROM address: abc@gmail.com
 
-Msg from server: 250 OK
-Enter MAILTO address: bcd@gmail.com
+// Msg from server: 250 OK
+// Enter MAILTO address: bcd@gmail.com
 
-MAILTO response from server: 250 OK
+// MAILTO response from server: 250 OK
 
-DATA response from server: 354
-Enter email body (type 'END' to finish):
-Hi
-Hello
-END
+// DATA response from server: 354
+// Enter email body (type 'END' to finish):
+// Hi
+// Hello
+// END
 
-Msg from server: 221
+// Msg from server: 221
 
-__Qutting__
+// __Qutting__
